@@ -3,7 +3,7 @@ const { Octokit } = require('@octokit/rest');
 
 // Commit and raise PR to GitHub
 async function raisePullRequest(repoOwner, repoName, branchName, filePath, commitMessage) {
-    const octokit = new Octokit({ auth: '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' });
+    const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
     const { data: repo } = await octokit.repos.get({ owner: repoOwner, repo: repoName });
     const defaultBranch = repo.default_branch;

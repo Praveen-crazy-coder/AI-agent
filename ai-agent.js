@@ -1,7 +1,7 @@
 const OpenAI = require('openai');
 
 const openai = new OpenAI({
-    apiKey: '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', // Replace with your API key
+    apiKey: process.env.OPEN_AI, // Replace with your API key
 });
 
 async function suggestSelectorFix(html, brokenSelector) {
