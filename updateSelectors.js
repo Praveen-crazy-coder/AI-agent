@@ -25,8 +25,16 @@ async function updateSelectors(filePath, siteHtml) {
         }
     }
 
+    // Manually format the updated selectors as JavaScript with unquoted keys
+    let updatedSelectorsString = 'Selectors = {\n';
+    for (const [key, value] of Object.entries(updatedSelectors)) {
+        updatedSelectorsString += `    ${key}: "${value}",\n`;
+    }
+    updatedSelectorsString = updatedSelectorsString.trimEnd().slice(0, -1);  // Remove the last comma
+    updatedSelectorsString += '\n};';
+
     // Replace the old Selectors object in the file content
-    const updatedContent = fileContent.replace(selectorRegex, `Selectors = ${JSON.stringify(updatedSelectors, null, 4)};`);
+    const updatedContent = fileContent.replace(selectorRegex, updatedSelectorsString);
     fs.writeFileSync(filePath, updatedContent, 'utf-8');
     console.log('Selectors updated successfully.');
 }
