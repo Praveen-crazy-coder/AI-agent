@@ -13,6 +13,7 @@ async function updateSelectors(filePath, siteHtml) {
     }
 
     const selectors = eval(`(${match[1]})`); // Convert to an object
+    // const selectors = JSON.parse(match[1]);
     const updatedSelectors = {};
 
     for (const [key, selector] of Object.entries(selectors)) {
